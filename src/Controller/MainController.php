@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Controller;
-use App\Service\Params;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -63,15 +59,6 @@ class MainController extends AbstractController
         $response = new Response($this->jmsGroupNormalize($entity));
         $response->headers->set(self::HEADER_CONTENT, self::CONTENT_TYPE);
         //$response->setStatusCode(200);
-        return $response;
-    }
-
-
-    public function createErrorResponse($errors)
-    {
-        $response = new Response($this->jmsNormalize($this->getErrors($errors)));
-        $response->headers->set(self::HEADER_CONTENT, self::CONTENT_TYPE);
-        //$response->setStatusCode($code);
         return $response;
     }
 
